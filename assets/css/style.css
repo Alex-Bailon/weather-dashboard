@@ -1,0 +1,20 @@
+h2 {
+    text-align: center;
+    margin: 0;
+    padding: 10px 0px;
+}
+#currentDay,
+#fiveDay,
+#city,
+#fiveDay{
+    border: 1px red solid;
+}
+#city {
+    margin: 0em;
+}
+#fiveDay{
+    height: 20px;
+}
+#forecast{
+    padding: 5px;
+}
