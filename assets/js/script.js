@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    let historyArray = []
     $( '#searchBtn' ).on('click', function(){
         let options = {
             q: $( '#cityInput' ).val(),
@@ -39,6 +40,14 @@ $(document).ready(function(){
                     $( '#uvIndex' ).css('background-color', 'red')
                 }
             })
+            historyArray.unshift(options.q)
+            $( '#history' ).html('')
+            console.log(historyArray)
+            historyArray.forEach((item) => {
+                console.log(item)
+                let historyDiv = $( `<p> ${ item} </p>`)
+                $( '#history' ).append(historyDiv)
+        })
         })
     })
 })
