@@ -84,7 +84,7 @@ function renderCurrentDay(response){
         let fiveDayIcon = response.list[i].weather[0].icon
         let fiveDayURL = `http://openweathermap.org/img/w/${fiveDayIcon}.png`
         let card = $( 
-            `<div class="col s2">
+            `<div class="col s12 m2">
             <div class="card-panel light-blue">
             <span class="white-text" id="spanDate">${ response.list[i].dt_txt.split(' ')[0] }</span>
             <img src='${ fiveDayURL }'/>
@@ -92,8 +92,8 @@ function renderCurrentDay(response){
             <p>Humidity: ${ response.list[i].main.humidity }%</p>
             </div>
             </div>`
-            )
-            $( '#fiveDay' ).append(card)
-            $( '#fiveDayText' ).css('display', 'block')
-        }
+        )
+        $( '#fiveDay' ).append(card)
+        $( '#fiveDayText' ).css('display', 'block')
     }
+}

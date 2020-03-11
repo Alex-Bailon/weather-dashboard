@@ -33,7 +33,8 @@ h2 {
     cursor: pointer;
     background-color: ghostwhite;
 }
-.hisItem:hover{
+.hisItem:hover,
+#searchBtn:hover{
 border : 2px solid grey;
 font-weight: bold;
 background-color: lightgray ;
