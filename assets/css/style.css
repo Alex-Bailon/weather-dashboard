@@ -3,12 +3,6 @@ h2 {
     margin: 0;
     padding: 10px 0px;
 }
-#currentDay,
-#fiveDay,
-#city,
-#fiveDay{
-    border: 1px red solid;
-}
 #city {
     margin: 0em;
 }
@@ -28,6 +22,15 @@ h2 {
     margin: 0px;
     padding: 7px 0px;
 }
-#currentDay {
-    background-color: lightgray;
+#spanDate {
+    font-size: 18px;
+}
+
+#history {
+    padding: 0px 5px;
+}
+
+.hisItem {
+    cursor: pointer;
+    background-color: ghostwhite;
 }
