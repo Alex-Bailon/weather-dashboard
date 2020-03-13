@@ -76,7 +76,8 @@ $(document).ready(function(){
                 lon: response.city.coord.lon,
                 appid: '4c56e5acd3376fa64faa9d6655738d01'
             }
-            let uvURL = 'http://api.openweathermap.org/data/2.5/uvi?' + $.param(cord)
+            let uvURL = 'https://api.openweathermap.org/data/2.5/uvi?' + $.param(cord)
+            console.log(uvURL)
             $.ajax({
                 url: uvURL,
                 method: "GET"
