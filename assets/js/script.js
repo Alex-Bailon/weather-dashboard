@@ -132,7 +132,7 @@ function initHis(){
 function renderCurrentDay(response){
     $( '#fiveDayText' ).css('display', 'block')
     let iconimg = response.list[0].weather[0].icon
-    let iconURL = `http://openweathermap.org/img/w/${iconimg}.png`
+    let iconURL = `https://openweathermap.org/img/w/${iconimg}.png`
     $( '#city' ).html(`${ response.city.name } (${ response.list[0].dt_txt.split(' ')[0] }) <img src='${ iconURL }'/>`)
     $( '#temp').text(`Temperature: ${ response.list[0].main.temp } °F`)
     $( '#humidity' ).text(`Humidity: ${ response.list[0].main.humidity }%`)
@@ -140,7 +140,7 @@ function renderCurrentDay(response){
     $( '#fiveDay' ).text('')
     for ( let i = 7; i < 40; i+=8 ){
         let fiveDayIcon = response.list[i].weather[0].icon
-        let fiveDayURL = `http://openweathermap.org/img/w/${fiveDayIcon}.png`
+        let fiveDayURL = `https://openweathermap.org/img/w/${fiveDayIcon}.png`
         let card = $( 
             `<div class="col s12 m2">
             <div class="card-panel light-blue">
