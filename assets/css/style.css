@@ -32,6 +32,7 @@ h2 {
 .hisItem {
     cursor: pointer;
     background-color: ghostwhite;
+    user-select: none;
 }
 .hisItem:hover,
 #searchBtn:hover{

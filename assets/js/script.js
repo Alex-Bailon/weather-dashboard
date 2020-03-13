@@ -54,7 +54,6 @@ $(document).ready(function(){
                 localStorage.setItem('h', h)
             })
             $( '.hisItem' ).on('click', function(){
-                console.log('clicked')
                 let clickedVal = +($(this).attr('id'))
                 let uvClicked = UVResponse[clickedVal]
                 $( '#uv ').html('')
@@ -82,7 +81,6 @@ $(document).ready(function(){
                 url: uvURL,
                 method: "GET"
             }).then(function(res){
-                console.log('uv ajax')
                 let uvIndex = res.value
                 UVResponse.unshift(uvIndex)
                 localStorage.setItem('UVResponse', JSON.stringify(UVResponse))
@@ -96,7 +94,6 @@ $(document).ready(function(){
                 else{
                     $( '#uvIndex' ).css('background-color', 'red')
                 }
-                console.log('uv end')
             })
             renderCurrentDay(response)  
         })
