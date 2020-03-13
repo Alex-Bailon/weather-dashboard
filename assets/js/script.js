@@ -31,6 +31,17 @@ $(document).ready(function(){
         }
         renderCurrentDay(weatherResponse[clickedVal]) 
     })
+    $( '#clearBtn' ).on('click', function(){
+        $( '#history' ).html('')
+        h = 0
+        historyArray = []
+        weatherResponse = []
+        UVResponse = []
+        localStorage.setItem('h', h)
+        localStorage.setItem('historyArray', JSON.stringify(historyArray))
+        localStorage.setItem('weatherResponse', JSON.stringify(weatherResponse))
+        localStorage.setItem('UVResponse', JSON.stringify(UVResponse))
+    })
     $( '#input' ).on('submit', function(){
         event.preventDefault()
         let options = {

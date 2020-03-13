@@ -15,7 +15,8 @@ h2 {
 #uvIndex{
     padding: 3px;
 }
-#history p{
+#history p,
+#clearBtn {
     text-align: center;
     border: 1px solid gray;
     margin: 0px;
@@ -29,13 +30,14 @@ h2 {
     padding: 0px 5px;
 }
 
-.hisItem {
+.hisItem,
+#ClearBtn {
     cursor: pointer;
     background-color: ghostwhite;
     user-select: none;
 }
 .hisItem:hover,
-#searchBtn:hover{
+#clearBtn:hover{
 border : 2px solid grey;
 font-weight: bold;
 background-color: lightgray ;
