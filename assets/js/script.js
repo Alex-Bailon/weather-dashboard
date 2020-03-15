@@ -1,12 +1,13 @@
-let h = 0
+let h = 0 // var h is used to add id for each history items
 let historyArray = []
 let weatherResponse = []
 let UVResponse = []
-init()
-inith()
-initUV()
-initHis()
+init() //function used to get any weather response from local storage
+inith() //function used to get h from local storage
+initUV() //function used to get the UV Response from local storage
+initHis() //function used to get history array from loacl storage
 $(document).ready(function(){
+    //if statement to check if there is anything stored in local storage. If ture print out history array.
     if (h != 0){
         h = 0
         historyArray.forEach((item) => {
@@ -15,11 +16,13 @@ $(document).ready(function(){
             h++
         })
     }
+    //on click event for history items, once click will get id and use that as an index to get the info from weather and UV response.
     $( '.hisItem' ).on('click', function(){
         let clickedVal = +($(this).attr('id'))
         let uvClicked = UVResponse[clickedVal]
         $( '#uv ').html('')
         $( '#uv' ).html(`UV index: <span id="uvIndex">${ uvClicked }</span>`)
+        // if statement to check value of UV index so that it can change background color.
         if ( uvClicked < 3 ){
             $( '#uvIndex' ).css('background-color', 'green')
         }
@@ -31,6 +34,7 @@ $(document).ready(function(){
         }
         renderCurrentDay(weatherResponse[clickedVal]) 
     })
+    // on click event for clear history btn. Will reset all var to 0/empty and set it to local stotage
     $( '#clearBtn' ).on('click', function(){
         $( '#history' ).html('')
         h = 0
@@ -42,8 +46,10 @@ $(document).ready(function(){
         localStorage.setItem('weatherResponse', JSON.stringify(weatherResponse))
         localStorage.setItem('UVResponse', JSON.stringify(UVResponse))
     })
+    // Submit event for user input
     $( '#input' ).on('submit', function(){
         event.preventDefault()
+        //all vals needed to make URL to call ajax from API
         let options = {
             q: $( '#cityInput' ).val(),
             units: 'imperial',
@@ -54,8 +60,10 @@ $(document).ready(function(){
             url: queryURL,
             method: "GET"
         }).then(function(response){
+            // after getting response from API, add user  input to history array and to local storage
             historyArray.unshift(options.q)
             localStorage.setItem('historyArray', JSON.stringify(historyArray))
+            //empty the html for the div #history and display history items 
             $( '#history' ).html('')
             h = 0
             historyArray.forEach((item) => {
@@ -79,16 +87,17 @@ $(document).ready(function(){
                     $( '#uvIndex' ).css('background-color', 'red')
                 }
                 renderCurrentDay(weatherResponse[clickedVal]) 
-            })    
+            })
+            // add response from API to weather response array and store in local storage 
             weatherResponse.unshift(response)
             localStorage.setItem('weatherResponse', JSON.stringify(weatherResponse))
+            // setting cord from the response to get lat and lon for url to get UV index
             let cord = {
                 lat: response.city.coord.lat,
                 lon: response.city.coord.lon,
                 appid: '4c56e5acd3376fa64faa9d6655738d01'
             }
             let uvURL = 'https://api.openweathermap.org/data/2.5/uvi?' + $.param(cord)
-            console.log(uvURL)
             $.ajax({
                 url: uvURL,
                 method: "GET"
@@ -111,35 +120,35 @@ $(document).ready(function(){
         })
     })
 })
-
+// function to retrive weather response from local storage
 function init(){
     var retrive = JSON.parse(localStorage.getItem('weatherResponse'))
     if (retrive !== null){
         weatherResponse = retrive
     }
 }
-
+// function to retrive h from local storage
 function inith(){
     var retrive = JSON.parse(localStorage.getItem('h'))
     if (retrive !== null){
         h = retrive
     }
 }
-
+// function to retrive UV response from local storage
 function initUV(){
     var retrive = JSON.parse(localStorage.getItem('UVResponse'))
     if (retrive !== null){
         UVResponse = retrive
     }
 }
-
+// function to retrive history array from local storage
 function initHis(){
     var retrive = JSON.parse(localStorage.getItem('historyArray'))
     if (retrive !== null){
         historyArray = retrive
     }
 }
-
+// function to show info of the current day and 5 day forecast to the HTML
 function renderCurrentDay(response){
     $( '#fiveDayText' ).css('display', 'block')
     let iconimg = response.list[0].weather[0].icon
