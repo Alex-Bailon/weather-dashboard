@@ -3,12 +3,11 @@ let historyArray = []
 let weatherResponse = []
 let UVResponse = []
 init() //function used to get any weather response from local storage
-inith() //function used to get h from local storage
 initUV() //function used to get the UV Response from local storage
 initHis() //function used to get history array from loacl storage
 $(document).ready(function(){
     //if statement to check if there is anything stored in local storage. If ture print out history array.
-    if (h != 0){
+    if (historyArray.length != 0){
         h = 0
         historyArray.forEach((item) => {
             let historyDiv = $( `<p id="${ h }" class="hisItem"> ${ item } </p>`)
@@ -70,7 +69,6 @@ $(document).ready(function(){
                 let historyDiv = $( `<p id="${ h }" class="hisItem"> ${ item } </p>`)
                 $( '#history' ).append(historyDiv)
                 h++
-                localStorage.setItem('h', h)
             })
             $( '.hisItem' ).on('click', function(){
                 let clickedVal = +($(this).attr('id'))
@@ -125,13 +123,6 @@ function init(){
     var retrive = JSON.parse(localStorage.getItem('weatherResponse'))
     if (retrive !== null){
         weatherResponse = retrive
-    }
-}
-// function to retrive h from local storage
-function inith(){
-    var retrive = JSON.parse(localStorage.getItem('h'))
-    if (retrive !== null){
-        h = retrive
     }
 }
 // function to retrive UV response from local storage
